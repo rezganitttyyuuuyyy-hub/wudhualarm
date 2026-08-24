@@ -84,9 +84,21 @@ function withFixedGoogleMobileAds(config) {
       const buildGradlePath = path.join(
         projectRoot, 'node_modules', 'react-native-google-mobile-ads', 'android', 'build.gradle'
       );
-      if (fs.existsSync(buildGradlePath)) {
-        fs.writeFileSync(buildGradlePath, FIXED_BUILD_GRADLE, 'utf-8');
-        console.log('[withFixedGoogleMobileAds] Replaced build.gradle');
+      try {
+        if (fs.existsSync(buildGradlePath)) {
+          fs.writeFileSync(buildGradlePath, FIXED_BUILD_GRADLE, 'utf-8');
+          console.log('[withFixedGoogleMobileAds] Successfully patched build.gradle');
+        } else {
+          // Fallback creation if path doesn't exist yet during prebuild
+          const parentDir = path.dirname(buildGradlePath);
+          if (!fs.existsSync(parentDir)) {
+            fs.mkdirSync(parentDir, { recursive: true });
+          }
+          fs.writeFileSync(buildGradlePath, FIXED_BUILD_GRADLE, 'utf-8');
+          console.log('[withFixedGoogleMobileAds] Created and patched build.gradle');
+        }
+      } catch (e) {
+        console.error('[withFixedGoogleMobileAds error]:', e);
       }
       return cfg;
     },
@@ -94,5 +106,6 @@ function withFixedGoogleMobileAds(config) {
 }
 
 module.exports = withFixedGoogleMobileAds;
+
 
   
