@@ -1,0 +1,123 @@
+{
+  "expo": {
+    "name": "WudhuAlarm",
+    "slug": "wudhualarm",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./icon.png",
+    "scheme": "wudhualarm",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0D1B2A"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.wudhu.alarm.app",
+      "buildNumber": "1",
+      "icon": "./icon.png",
+      "infoPlist": {
+        "NSCameraUsageDescription": "WudhuAlarm uses the camera to verify water usage and wudhu requirements.",
+        "NSLocationWhenInUseUsageDescription": "WudhuAlarm needs your location to calculate accurate prayer times for your city.",
+        "UIBackgroundModes": [
+          "remote-notification"
+        ]
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./icon.png",
+        "backgroundColor": "#0D1B2A"
+      },
+      "icon": "./icon.png",
+      "package": "com.wudhu.alarm.app",
+      "versionCode": 1,
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE",
+        "SCHEDULE_EXACT_ALARM",
+        "USE_EXACT_ALARM",
+        "POST_NOTIFICATIONS",
+        "android.permission.CAMERA",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "WudhuAlarm uses the camera to verify water usage."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./icon.png",
+          "color": "#0D9488"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "WudhuAlarm needs your location to calculate accurate prayer times."
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "minSdkVersion": 24,
+            "buildToolsVersion": "35.0.0",
+            "kotlinVersion": "1.9.25",
+            "enableJetifier": true,
+            "packagingOptions": {
+              "pickFirst": [
+                "lib/**/libc++_shared.so",
+                "lib/**/libfbjni.so"
+              ]
+            }
+          },
+          "ios": {
+            "deploymentTarget": "15.1"
+          }
+        }
+      ],
+      "./plugins/withFixedGoogleMobileAds"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1f2c62e6-82ec-4d38-b871-c64888f49b48"
+      },
+      "router": {
+        "origin": false
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "sdkVersion": "52.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ]
+  }
+}
